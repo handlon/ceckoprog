@@ -55,11 +55,13 @@ int main()
         // Vypocet hodinove mzdy snizene o 40%
         float snizenaMzda = hodinovaMzda * 0.6f;
 
-        // Vypocet hrube mzdy
-        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda);
+        
 
         // Pridani bonusu
         bonusy = nactiCislo("Zadejte vysi bonusu: ");
+
+        // Vypocet hrube mzdy
+        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy;
 
         // Naklady na obedy
         obedyPocet = nactiCislo("Kolikrat jste byli na obede: ");
