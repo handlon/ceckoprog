@@ -46,7 +46,7 @@ int main()
         float snizenaMzda = hodinovaMzda * 0.6f;
         bonusy = nactiCislo("Zadejte vysi bonusu: ");
 
-        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy;
+        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) ;
         
         obedyPocet = nactiCislo("Kolikrat jste byli na obede: ");
         obedCena = nactiCislo("Kolik stoji jeden obed: ");
@@ -55,7 +55,7 @@ int main()
         char odpoved[4];
         while (1)
         {
-            printf("Chcete uplatnit slevu na poplatnika? (ano/ne): ");
+            printf("Chcete uplatnit slevu na poplatnika? (a/n): ");
             fgets(odpoved, sizeof(odpoved), stdin);
             if (odpoved[0] == 'a' || odpoved[0] == 'A')
             {
@@ -69,7 +69,7 @@ int main()
             }
             else
             {
-                printf("Neplatna odpoved. Zadejte ano nebo ne.\n");
+                printf("Neplatna odpoved. Zadejte 'a' nebo 'n'.\n");
             }
         }
 
@@ -100,7 +100,7 @@ int main()
 
         while (1)
         {
-            printf("Je vse v poradku? (ano/ne): ");
+            printf("Je vse v poradku? (a/n): ");
             fgets(odpoved, sizeof(odpoved), stdin);
             if (odpoved[0] == 'a' || odpoved[0] == 'A')
             {
@@ -114,7 +114,7 @@ int main()
             }
             else
             {
-                printf("Neplatna odpoved. Zadejte ano nebo ne.\n");
+                printf("Neplatna odpoved. Zadejte 'a' nebo 'n'.\n");
             }
         }
     }
