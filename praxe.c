@@ -46,7 +46,9 @@ int main()
         float snizenaMzda = hodinovaMzda * 0.6f;
         bonusy = nactiCislo("Zadejte vysi bonusu: ");
 
-        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) ;
+        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy ;
+
+
         
         obedyPocet = nactiCislo("Kolikrat jste byli na obede: ");
         obedCena = nactiCislo("Kolik stoji jeden obed: ");
@@ -75,7 +77,17 @@ int main()
 
         zdravotniPojisteni = hrubaMzda * 0.045f;
         socialniPojisteni = hrubaMzda * 0.071f;
-        dan = hrubaMzda * 0.15f;
+
+        if(hrubaMzda > 139671){
+
+            dan = hrubaMzda * 0.23f;
+
+        }else if (hrubaMzda <= 139671){
+
+            dan = hrubaMzda * 0.15f;
+
+        }
+        
 
         if (dan < slevaPoplatnik)
         {
@@ -86,7 +98,7 @@ int main()
             dan -= slevaPoplatnik;
         }
 
-        cisteMzda = hrubaMzda - zdravotniPojisteni - socialniPojisteni - dan - obedyNaklady + bonusy;
+        cisteMzda = hrubaMzda - zdravotniPojisteni - socialniPojisteni - dan - obedyNaklady;
 
         printf("\n=== Vysledky ===\n");
         printf("Hruba mzda: %.2f Kc\n", hrubaMzda);
