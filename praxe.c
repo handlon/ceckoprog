@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
 int nactiCislo(const char *vyzva)
 {
@@ -34,7 +35,7 @@ int main()
 {
     int hodinovaMzda, odpracovaneHodiny, hodinyLekar, hodinyDovolena;
     int bonusy, obedyPocet, obedCena, slevaPoplatnik = 0;
-    float hrubaMzda, zdravotniPojisteni, socialniPojisteni, dan, cisteMzda;
+    float hrubaMzda, zaklad, zdravotniPojisteni, socialniPojisteni, dan, cisteMzda;
 
     while (1)
     {
@@ -47,6 +48,8 @@ int main()
         bonusy = nactiCislo("Zadejte vysi bonusu: ");
 
         hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy ;
+
+        zaklad = ((hrubaMzda + 50) / 100) * 100;
 
 
         
@@ -77,12 +80,15 @@ int main()
 
         zdravotniPojisteni = hrubaMzda * 0.045f;
         socialniPojisteni = hrubaMzda * 0.071f;
+        
+        socialniPojisteni = (socialniPojisteni);
+        zdravotniPojisteni = (zdravotniPojisteni);
 
-        if(hrubaMzda > 139671){
+        if(zaklad > 139671){
 
             dan = hrubaMzda * 0.23f;
 
-        }else if (hrubaMzda <= 139671){
+        }else if (zaklad <= 139671){
 
             dan = hrubaMzda * 0.15f;
 
