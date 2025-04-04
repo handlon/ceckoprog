@@ -49,7 +49,13 @@ int main()
 
         hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy ;
 
-        zaklad = ((hrubaMzda + 50) / 100) * 100;
+        hrubaMzda = round(hrubaMzda);
+
+        zaklad = ceil((hrubaMzda / 100)) * 100;
+
+       /*printf("zaklad %f", zaklad);*/
+
+        
 
 
         
@@ -78,19 +84,23 @@ int main()
             }
         }
 
-        zdravotniPojisteni = hrubaMzda * 0.045f;
-        socialniPojisteni = hrubaMzda * 0.071f;
+        zdravotniPojisteni =ceil(hrubaMzda * 0.045f); 
+        socialniPojisteni =ceil(hrubaMzda * 0.071f);
         
         socialniPojisteni = (socialniPojisteni);
         zdravotniPojisteni = (zdravotniPojisteni);
 
         if(zaklad > 139671){
+            int cast1 = 139671;
+            int cast2 = (int)zaklad - cast1;
 
-            dan = hrubaMzda * 0.23f;
+            printf("cast 2 %d\n", cast2);
 
-        }else if (zaklad <= 139671){
+            dan = (cast1 * 0.15f) + (cast2 * 0.23f);
+            
+        }else {
 
-            dan = hrubaMzda * 0.15f;
+            dan = zaklad * 0.15f;
 
         }
         
@@ -103,6 +113,8 @@ int main()
         {
             dan -= slevaPoplatnik;
         }
+
+        dan = ceil(dan);
 
         cisteMzda = hrubaMzda - zdravotniPojisteni - socialniPojisteni - dan - obedyNaklady;
 
