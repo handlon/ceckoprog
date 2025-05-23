@@ -14,7 +14,7 @@ int nactiCislo(const char *vyzva)
         {
             char *endptr;
             cislo = strtol(buffer, &endptr, 10);
-            
+
             if (endptr != buffer && *endptr == '\n' && cislo >= 0)
             {
                 return cislo;
@@ -39,26 +39,50 @@ int main()
 
     while (1)
     {
-        hodinovaMzda = nactiCislo("Zadejte hodinovou mzdu: ");
-        odpracovaneHodiny = nactiCislo("Zadejte pocet odpracovanych hodin: ");
+        while (1)
+        {
+            hodinovaMzda = nactiCislo("Zadejte hodinovou mzdu: ");
+            if (hodinovaMzda > 100000)
+            {
+                printf("\n!!! je zadana moc velka hodinova mzda !!!\n");
+                printf("zadejte prosim znovu\n\n");
+                hodinovaMzda = 0;
+            }
+            else
+            {
+                break;
+            }
+        }
+        while (1)
+        {
+            odpracovaneHodiny = nactiCislo("Zadejte pocet odpracovanych hodin: ");
+            if (odpracovaneHodiny > 175)
+            {
+                printf("\n!!! byl presazen legalni limit odpracovanych hodin !!!\n");
+                printf("zadejte prosim znovu\n\n");
+                odpracovaneHodiny = 0;
+               
+            }
+            else
+            {
+                break;
+            }
+        }
+
         hodinyLekar = nactiCislo("Kolik hodin jste byli u lekare: ");
         hodinyDovolena = nactiCislo("Kolik hodin jste byli na dovolene: ");
 
         float snizenaMzda = hodinovaMzda * 0.6f;
         bonusy = nactiCislo("Zadejte vysi bonusu: ");
 
-        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy ;
+        hrubaMzda = (hodinovaMzda * odpracovaneHodiny) + (hodinyLekar * snizenaMzda) + (hodinyDovolena * snizenaMzda) + bonusy;
 
         hrubaMzda = round(hrubaMzda);
 
         zaklad = ceil((hrubaMzda / 100)) * 100;
 
-       /*printf("zaklad %f", zaklad);*/
+        /*printf("zaklad %f", zaklad);*/
 
-        
-
-
-        
         obedyPocet = nactiCislo("Kolikrat jste byli na obede: ");
         obedCena = nactiCislo("Kolik stoji jeden obed: ");
         int obedyNaklady = obedyPocet * obedCena;
@@ -84,26 +108,29 @@ int main()
             }
         }
 
-        zdravotniPojisteni =ceil(hrubaMzda * 0.045f); 
-        socialniPojisteni =ceil(hrubaMzda * 0.071f);
-        
+        zdravotniPojisteni = ceil(hrubaMzda * 0.045f);
+        socialniPojisteni = ceil(hrubaMzda * 0.071f);
+
         socialniPojisteni = (socialniPojisteni);
+        if (socialniPojisteni>= 13222){
+            socialniPojisteni = 13222;
+        }
         zdravotniPojisteni = (zdravotniPojisteni);
 
-        if(zaklad > 139671){
+        if (zaklad > 139671)
+        {
             int cast1 = 139671;
             int cast2 = (int)zaklad - cast1;
 
             printf("cast 2 %d\n", cast2);
 
             dan = (cast1 * 0.15f) + (cast2 * 0.23f);
-            
-        }else {
+        }
+        else
+        {
 
             dan = zaklad * 0.15f;
-
         }
-        
 
         if (dan < slevaPoplatnik)
         {
@@ -151,4 +178,3 @@ int main()
 
     return 0;
 }
-
